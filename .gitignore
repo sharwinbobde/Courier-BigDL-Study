@@ -1,0 +1,5 @@
+.venv/*
+
+*.csv
+google_compute_engine
+*json
