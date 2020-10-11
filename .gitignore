@@ -3,3 +3,8 @@
 *.csv
 google_compute_engine
 *json
+
+*.pkl
+Run.ipynb
+Export.ipynb
+
