@@ -19,7 +19,7 @@ def main(output_file: str, interval: int, max_time:int):
 
     # Run for the max time
     while time.time() < start_time + max_time:
-        _cpu = psutil.cpu_percent()
+        _cpu = psutil.cpu_percent(1)
         _io = psutil.cpu_times_percent().iowait
         cpu_usage.append(_cpu)
         io_wait.append(_io)
