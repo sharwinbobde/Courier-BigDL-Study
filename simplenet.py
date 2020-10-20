@@ -10,8 +10,8 @@ from bigdl.util.common import *
 
 def build_model(class_num):
     model = Sequential()
-    model.add(Reshape([1,28,28]))
-    model.add(Linear(28 * 28, 128))
+    model.add(Reshape([28*28]))
+    model.add(Linear(28*28, 128))
     model.add(ReLU())
     model.add(Linear(128, class_num))
     model.add(LogSoftMax())
