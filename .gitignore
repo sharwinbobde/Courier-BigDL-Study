@@ -12,3 +12,5 @@ __pycache__
 experiments
 
 .idea
+figures/
+.ipynb_checkpoints
