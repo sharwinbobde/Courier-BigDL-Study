@@ -23,3 +23,7 @@ To get the measurements from the different servers, you need to copy the `cpu_io
 your servers, and specify in the main notebook the location of this file. This outputs a pickle file 
 with the cpu and io wait percentages every interval seconds.
 
+## Seeing the experiment results
+In the `experiment-results` notebook we provide code to read the experiment files and perform the ANOVA analysis of the data.
+We also provide there the code used to model the system with queuing theory and the final model using multiple random forests.
+
