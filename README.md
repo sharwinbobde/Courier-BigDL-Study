@@ -1,4 +1,4 @@
-# QPE-Group-12
+# Courier BigDL Study
 
 ## Running experiments
 
