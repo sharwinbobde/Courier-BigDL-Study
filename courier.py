@@ -38,8 +38,10 @@ class Courier:
         self.acc_model = models['accuracy']
         self.time_model = models['time']
 
-    def optimize(self, job: Job, latency=None):
-        acc, t = self._predict(job)
+    def optimize(self, job: Job, latency=None, test=False):
+        """Find the best batch given the job and the latency
+        If test is true, the features are just cpu, batch and network"""
+        acc, t = self._predict(job, test)
 
         b = self.batches
 
@@ -86,7 +88,7 @@ class Courier:
         scaler = StandardScaler()
         return scaler.fit_transform(X)
 
-    def _predict(self, job: Job):
+    def _predict(self, job: Job, test):
         """Predicts the time, accuracy and util with different batches
         and returns the best one given the optims"""
 
@@ -95,7 +97,10 @@ class Courier:
 
         # predict the performance of the job with different batches
         for b in self.batches:
-            data_point = self.scaler.transform([[job.cpu * job.njobs, job.cpu, job.njobs, b, job.network]])
+            if test:
+                data_point = self.scaler.transform([[job.cpu, b, job.network]])
+            else:
+                data_point = self.scaler.transform([[job.cpu * job.njobs, job.cpu, job.njobs, b, job.network]])
             _acc = self.acc_model.predict(data_point)
             _t = self.time_model.predict(data_point)
             # print(f'Batch {b}, acc = {_acc} and t = {_t}')
